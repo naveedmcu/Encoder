@@ -1,0 +1,65 @@
+W0      @SCRATCH
+W0L     _RETURN_
+W0 -W1  @DIV3232B.P1
+W0 -W1  @READ_ROM_MEMORY.P2
+W0      @delay_ms1.P3
+W0      @delay_us1.P4
+W1      @SCRATCH
+W1      @WRITE_PACKED_MEMORY.P1
+W1      @READ_PACKED_MEMORY.P2
+W2      @READ_ROM_MEMORY.P1
+W2      @READ_PACKED_MEMORY.P2
+W2      @WRITE_PACKED_MEMORY.P3
+W2 -W3  @DIV3232B.P4
+W3      @WRITE_PACKED_MEMORY.P1
+W3      @READ_PACKED_MEMORY.P2
+W3      @READ_ROM_MEMORY.P3
+2C6     trisb
+800-813 Mydata
+814-815 UseAdd
+F80-FFF Stack
+
+ROM Allocation:
+000100  isrTimer1
+000130  Timer2
+000158  @delay_ms1
+00016C  main
+00016C  @cinit1
+000182  @cinit2
+
+Project Directory:
+    D:\2018-Projects\motor-Encoder\Encoder_Project_MPLABX.X\
+
+Project Files:
+    main.c                                                  [24-Jul-18 03:04  CRC=D73976CF]
+    main.h                                                  [24-Jul-18 03:06  CRC=5FAE83A1]
+    C:\Program Files\PICC\Devices\30F4011.h                 [24-Feb-17 16:26  CRC=5FF17BB7]
+
+Source signature=F6CAF1DE
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=115C
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      DSPIC30F4011
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: SIGNED: 8,16,32
+    Float,Double:   32,64
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

@@ -1,0 +1,69 @@
+W0      @SCRATCH
+W0L     _RETURN_
+W0      @delay_ms1.P1
+W0 -W1  @READ_ROM_MEMORY.P2
+W0      @delay_us1.P3
+W0 -W1  @DIV3232B.P4
+W1      @SCRATCH
+W1      @READ_PACKED_MEMORY.P1
+W1      @WRITE_PACKED_MEMORY.P2
+W2 -W3  @DIV3232B.P1
+W2      @WRITE_PACKED_MEMORY.P2
+W2      @READ_PACKED_MEMORY.P3
+W2 -W3  @SPI_XFER_1.P4
+W2      @READ_ROM_MEMORY.P5
+W3      @READ_ROM_MEMORY.P1
+W3      @READ_PACKED_MEMORY.P2
+W3      @WRITE_PACKED_MEMORY.P3
+W4      @SPI_XFER_1.P1
+2C6     trisb
+800-813 Mydata
+814-815 UseAdd
+816     inputData
+F80-FFF Stack
+
+ROM Allocation:
+000100  isrTimer1
+000130  Timer2
+000158  @SPI_XFER_1
+0001AC  @delay_ms1
+0001C0  main
+0001C0  @cinit1
+0001DE  @cinit2
+
+Project Directory:
+    D:\2018-Projects\motor-Encoder\Encoder_Project_MPLABX.X\
+
+Project Files:
+    main.c                                                  [22-Dec-18 23:36  CRC=BF269E8F]
+    main.h                                                  [18-Dec-18 11:02  CRC=09CC94D8]
+    C:\Program Files\PICC\devices\30F4011.h                 [24-Feb-17 16:26  CRC=5FF17BB7]
+
+Source signature=88D62AD5
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=6A64
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      DSPIC30F4011
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: SIGNED: 8,16,32
+    Float,Double:   32,64
+    Compile Mode:       CCS5
+    Predefined symbols:
+       #define __dsPIC30F4011__ 1
+
+Output Files:
+    Ext Symbols: build\default\production\_ext\1432261028\main.esym
+    INHX8:       build\default\production\_ext\1432261028\main.hex
+    Symbols:     build\default\production\_ext\1432261028\main.sym
+    List:        build\default\production\_ext\1432261028\main.lst
+    Debug/COFF:  build\default\production\_ext\1432261028\main.cof
+    Project:     main.ccspjt
+    Call Tree:   build\default\production\_ext\1432261028\main.tre
+    Statistics:  build\default\production\_ext\1432261028\main.STA

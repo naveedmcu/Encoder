@@ -1,0 +1,96 @@
+[PROJECT]
+Target=main.hex
+Processor_Text=DSPIC30F4011
+CCSVerions=5.070
+Compiler=PCD
+CCSVersion=5.070
+Development_Mode=
+ToolSuite=CCS
+[Target Data]
+FileList=main.c
+BuildTool=C-COMPILER
+OptionString=+FD
+AdditionalOptionString=
+BuildRequired=1
+[Directories]
+Include=
+Library=
+LinkerScript=
+output=
+[D:\2018-Projects\motor-Encoder\Code\main]
+Type=4
+[mru-list]
+1=main.c
+
+[ProjectLog]
+Days=3
+D1=14-06-2018
+D1_L=1
+D1_L1=[80985]Project Opened.
+D2=16-06-2018
+D2_L=11
+D2_L1=[1497]Project Opened.
+D2_L2=[1500]Started Editing.
+D2_L3=[2620]Stopped Editing.
+D2_L4=[48478]Started Editing.
+D2_L5=[48555]Stopped Editing.
+TotalEdit=16
+TotalDebug=0
+D2_E=16
+D2_D=0
+D2_L6=[48600]Started Editing.
+D2_L7=[48615]Stopped Editing.
+D2_L8=[48650]Started Editing.
+D2_L9=[49363]Stopped Editing.
+D2_L10=[54745]Started Editing.
+D2_L11=[55045]Stopped Editing.
+D3=27-07-2018
+D3_L=1
+D3_L1=[13910]Project Opened.
+
+[Opened Files]
+1=main.c
+t1=1
+Count=1
+2=main.h
+t2=1
+3=C:\Program Files\PICC\Devices\30F4011.h
+t3=194
+[main.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[defines]
+buildcount=19
+enabled=0
+chip=1
+D1=
+V1=
+
+[fileformats]
+forcecoff=1
+debug=4
+error=2
+object=0
+list=0
+scratch=0
+sta=1
+tre=1
+expandtree=0
+allerrors=1
+allwarnings=1
+stayupne=1
+stayupoe=0
+
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+
+[CompilerVersion]
+Fixed=
+[Units]
+Count=1
+1=main (main)

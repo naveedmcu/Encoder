@@ -1,0 +1,34 @@
+#include <main.h>
+
+#byte trisb = getenv("SFR:TRISB")
+
+
+union Data {
+   int i;
+   float f;
+   char str[20];
+};
+
+union myAddress
+{
+ 
+}
+
+void main()
+{
+setup_oscillator(OSC_INTERNAL);
+ 
+ union Data Mydata;
+
+
+   while(TRUE)
+   {
+   output_toggle(PIN_E0);
+   output_toggle(PIN_E1);
+   output_toggle(PIN_E2);
+   output_toggle(PIN_E3);
+   delay_ms(200);
+      //TODO: User Code
+   }
+
+}

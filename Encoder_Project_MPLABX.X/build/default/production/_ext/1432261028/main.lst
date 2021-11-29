@@ -1,0 +1,332 @@
+CCS PCD C Compiler, Version 5.070, 60849               23-Dec-18 19:40
+
+               Filename:   D:\2018-Projects\motor-Encoder\Encoder_Project_MPLABX.X\build\default\production\_ext\1432261028\main.lst
+
+               ROM used:   624 bytes (2%)
+                           Largest free fragment is 32144
+               RAM used:   152 (7%) at main() level
+                           158 (8%) worst case
+               Stack used: 46 locations (8 in main + 38 for interrupts)
+               Stack size: 128
+
+*
+0000:  GOTO    1C0
+*
+001A:  DATA    00,01,00
+*
+0020:  DATA    30,01,00
+.................... #include <main.h> 
+.................... #include <30F4011.h> 
+.................... //////////// Standard Header file for the DSPIC30F4011 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device DSPIC30F4011 
+....................  
+.................... #list 
+....................  
+.................... #device ICSP=1 
+.................... #use delay(internal=120MHz) 
+*
+01AC:  CP0     W0
+01AE:  BTSC.B  42.1
+01B0:  BRA     1BE
+01B2:  REPEAT  #352B
+01B4:  NOP     
+01B6:  REPEAT  #3FFE
+01B8:  NOP     
+01BA:  DEC     W0,W0
+01BC:  BRA     NZ,1B2
+01BE:  RETURN  
+.................... #fuses FRC_PLL16               //Internal Fast RC oscillator 7.3728Mhz with 16X PLL 
+.................... #fuses FRC                    //Internal Fast RC Oscillator 
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #fuses NOCKSFSM    //Clock Switching is disabled, fail Safe clock monitor is disabled 
+.................... #FUSES PUT64                    //Power On Reset Timer value 64ms 
+.................... #FUSES BORRES                   //Reserved (do not use) 
+.................... #FUSES NOBROWNOUT               //No brownout reset 
+.................... #FUSES LPOL_HIGH                //Low-Side Transistors Polarity is Active-High (PWM 0,2,4 and 6) 
+....................    //PWM module low side output pins have active high output polar 
+.................... #FUSES HPOL_HIGH                //High-Side Transistors Polarity is Active-High (PWM 1,3,5 and 7) 
+....................    //PWM module high side output pins have active high output polarity 
+.................... #FUSES NOPWMPIN                 //PWM outputs drive active state upon Reset 
+.................... #FUSES NOMCLR                     //Master Clear pin enabled 
+.................... #FUSES NOWRT                    //Program memory not write protected 
+.................... #FUSES NOPROTECT                //Code not protected from reading 
+.................... #fuses ICSP1       //ICD uses PGC1/PGD1 pins 
+....................  
+.................... #use spi(SLAVE, CLK=PIN_E2, DI=PIN_E0, DO=PIN_E1, MODE=0, BITS=8, ENABLE=PIN_E3, stream=MT1) 
+*
+0158:  MOV     W5,[W15++]
+015A:  MOV     W6,[W15++]
+015C:  MOV     W7,[W15++]
+015E:  MOV     #20,W0
+0160:  SUB     W0,W4,W5
+0162:  BRA     Z,16C
+0164:  RLC     W2,W2
+0166:  RLC     W3,W3
+0168:  DEC     W5,W5
+016A:  BRA     NZ,164
+016C:  BSET.B  2D8.0
+016E:  BCLR.B  2D8.1
+0170:  BSET.B  2D8.2
+0172:  BSET.B  2D8.3
+0174:  MOV     W4,W5
+0176:  BTSS    W3.F
+0178:  BCLR.B  2DC.1
+017A:  BTSC    W3.F
+017C:  BSET.B  2DC.1
+017E:  RLC     W2,W2
+0180:  RLC     W3,W3
+0182:  BTSC.B  2DA.3
+0184:  BRA     182
+0186:  BTSS.B  2DA.2
+0188:  BRA     186
+018A:  RLC     W0,W0
+018C:  RLC     W1,W1
+018E:  BTSS.B  2DA.0
+0190:  BCLR.B  0.0
+0192:  BTSC.B  2DA.0
+0194:  BSET.B  0.0
+0196:  BTSC.B  2DA.3
+0198:  BRA     196
+019A:  BTSC.B  2DA.2
+019C:  BRA     19A
+019E:  DEC     W5,W5
+01A0:  BRA     NZ,176
+01A2:  BSET.B  2DC.3
+01A4:  MOV     [--W15],W7
+01A6:  MOV     [--W15],W6
+01A8:  MOV     [--W15],W5
+01AA:  RETURN  
+....................  
+....................  
+.................... #byte trisb = getenv("SFR:TRISB") 
+....................  
+.................... #define mClock PIN_D2 
+.................... #define mDirectoin PIN_B7 
+.................... #define mEnable PIN_B8 
+....................  
+.................... union uData { 
+....................     int i; 
+....................     float f; 
+....................     char str[20]; 
+.................... }; 
+....................  
+.................... union myAddress { 
+....................     int8 LOWbyte; 
+....................     int8 Highbyte; 
+....................     int16 MYLocalAddress; 
+.................... }; 
+....................  
+.................... union uData Mydata; 
+.................... union myAddress UseAdd; 
+.................... int8 inputData; 
+....................  
+.................... void main() { 
+*
+01C0:  MOV     #F80,W15
+01C2:  MOV     #FFF,W0
+01C4:  MOV     W0,20
+01C6:  NOP     
+01C8:  MOV     #4444,W0
+01CA:  MOV     W0,94
+01CC:  BSET.B  81.7
+01CE:  MOV     #33FF,W0
+01D0:  AND     742
+01D2:  BSET.B  743.2
+01D4:  BSET.B  2D8.0
+01D6:  BCLR.B  2D8.1
+01D8:  BSET.B  2D8.2
+01DA:  BSET.B  2D8.3
+01DC:  SETM    2A8
+....................  
+....................     setup_oscillator(OSC_INTERNAL); 
+01DE:  DISI    #E
+01E0:  MOV     #103,W0
+01E2:  MOV     #743,W1
+01E4:  MOV     #78,W2
+01E6:  MOV     #9A,W3
+01E8:  MOV.B   W2L,[W1]
+01EA:  MOV.B   W3L,[W1]
+01EC:  MOV.B   W0L,743
+01EE:  LSR     W0,#8,W0
+01F0:  MOV     #742,W1
+01F2:  MOV     #46,W2
+01F4:  MOV     #57,W3
+01F6:  MOV.B   W2L,[W1]
+01F8:  MOV.B   W3L,[W1]
+01FA:  MOV.B   W0L,[W1]
+01FC:  MOV     #33FF,W0
+01FE:  AND     742
+....................     SETUP_ADC_PORTS(NO_ANALOGS); 
+0200:  SETM    2A8
+....................     MYdata.i = 1; 
+0202:  MOV     #1,W4
+0204:  MOV     W4,800
+....................     UseAdd.MYLocalAddress = 100; 
+0206:  MOV     #64,W4
+0208:  MOV     W4,814
+....................      
+....................     setup_timer1(TMR_INTERNAL | TMR_DIV_BY_1, 600); 
+020A:  CLR     104
+020C:  MOV     #258,W4
+020E:  MOV     W4,102
+0210:  MOV     #8000,W4
+0212:  MOV     W4,104
+....................     setup_timer2(TMR_INTERNAL | TMR_DIV_BY_1, 300); 
+0214:  CLR     110
+0216:  MOV     #12C,W4
+0218:  MOV     W4,10C
+021A:  MOV     #8000,W4
+021C:  MOV     W4,110
+....................  
+....................     enable_interrupts(INT_TIMER1); 
+021E:  BSET.B  8C.3
+....................     enable_interrupts(INT_TIMER2); 
+0220:  BSET.B  8C.6
+....................     disable_interrupts(INT_TIMER1); 
+0222:  BCLR.B  8C.3
+....................     disable_interrupts(INT_TIMER2); 
+0224:  BCLR.B  8C.6
+....................     enable_interrupts(INTR_GLOBAL); 
+0226:  BCLR.B  81.7
+0228:  CLR     42
+022A:  BSET.B  81.7
+....................  
+....................     spi_xfer(MT1, 0x08); 
+022C:  MOV     #8,W4
+022E:  MOV     #8,W2
+0230:  MOV     #0,W3
+0232:  CALL    158
+....................  
+....................     while (TRUE) { 
+....................         output_toggle(PIN_E0); 
+0236:  BCLR.B  2D8.0
+0238:  BTG.B   2DC.0
+....................         output_toggle(PIN_E1); 
+023A:  BCLR.B  2D8.1
+023C:  BTG.B   2DC.1
+....................         output_toggle(PIN_E2); 
+023E:  BCLR.B  2D8.2
+0240:  BTG.B   2DC.2
+....................         output_toggle(PIN_E3); 
+0242:  BCLR.B  2D8.3
+0244:  BTG.B   2DC.3
+....................         output_toggle(PIN_B2); 
+0246:  BCLR.B  2C6.2
+0248:  BTG.B   2CA.2
+....................                 output_toggle(mClock); 
+024A:  BCLR.B  2D2.2
+024C:  BTG.B   2D6.2
+....................                 output_toggle(mDirectoin); 
+024E:  BCLR.B  2C6.7
+0250:  BTG.B   2CA.7
+....................                 output_toggle(mEnable); 
+0252:  BCLR.B  2C7.0
+0254:  BTG.B   2CB.0
+....................         delay_us(37); 
+0256:  REPEAT  #454
+0258:  NOP     
+....................         delay_ms(100); 
+025A:  MOV     #64,W0
+025C:  CALL    1AC
+....................          
+....................         //inputData = spi_xfer(MT1); 
+....................         if (inputData == 0x08) { 
+0260:  MOV.B   816,W0L
+0262:  SE      W0,W0
+0264:  CP      W0,#8
+0266:  BRA     NZ,26C
+....................             output_high(mClock); 
+0268:  BCLR.B  2D2.2
+026A:  BSET.B  2D6.2
+....................         } 
+026C:  BRA     236
+....................     } 
+.................... } 
+....................  
+.................... #INT_TIMER1 
+....................  
+026E:  PWRSAV  #0
+.................... void isrTimer1() { 
+*
+0100:  PUSH    42
+0102:  PUSH    36
+0104:  PUSH    32
+0106:  MOV     W0,[W15++]
+0108:  MOV     #2,W0
+010A:  REPEAT  #C
+010C:  MOV     [W0++],[W15++]
+....................     clear_interrupt(INT_TIMER1); 
+010E:  BCLR.B  84.3
+....................     output_high(mClock); 
+0110:  BCLR.B  2D2.2
+0112:  BSET.B  2D6.2
+....................     set_timer1(600); 
+0114:  MOV     #258,W4
+0116:  MOV     W4,100
+....................     enable_interrupts(INT_TIMER2); 
+0118:  BSET.B  8C.6
+....................     set_timer2(300); 
+011A:  MOV     #12C,W4
+011C:  MOV     W4,106
+.................... } 
+011E:  BCLR.B  84.3
+0120:  MOV     #1A,W0
+0122:  REPEAT  #C
+0124:  MOV     [--W15],[W0--]
+0126:  MOV     [--W15],W0
+0128:  POP     32
+012A:  POP     36
+012C:  POP     42
+012E:  RETFIE  
+.................... #INT_TIMER2 
+....................  
+.................... void Timer2() { 
+0130:  PUSH    42
+0132:  PUSH    36
+0134:  PUSH    32
+0136:  MOV     W0,[W15++]
+0138:  MOV     #2,W0
+013A:  REPEAT  #C
+013C:  MOV     [W0++],[W15++]
+....................     clear_interrupt(INT_TIMER2); 
+013E:  BCLR.B  84.6
+....................     disable_interrupts(INT_TIMER2); 
+0140:  BCLR.B  8C.6
+....................     output_low(mClock); 
+0142:  BCLR.B  2D2.2
+0144:  BCLR.B  2D6.2
+0146:  BCLR.B  84.6
+0148:  MOV     #1A,W0
+014A:  REPEAT  #C
+014C:  MOV     [--W15],[W0--]
+014E:  MOV     [--W15],W0
+0150:  POP     32
+0152:  POP     36
+0154:  POP     42
+0156:  RETFIE  
+.................... } 
+
+Configuration Fuses:
+   Word  1L: 0103   FRC_PLL16 FRC CKSFSM
+          H: 0000  
+   Word  2L: 003F   WPSB16 WPSA512 NOWDT
+          H: 0000  
+   Word  3L: 0733   PUT64 BORRES NOBROWNOUT LPOL_HIGH HPOL_HIGH NOPWMPIN NOMCLR
+          H: 0000  
+   Word  4L: 310F  
+          H: 0000  
+   Word  5L: 330F  
+          H: 0000  
+   Word  6L: 0007   NOWRT NOPROTECT
+          H: 0000  
+   Word  7L: C003   ICSP1 NODEBUG
+          H: 0000  

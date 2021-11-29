@@ -1,0 +1,49 @@
+
+ROM used:   510/32768 (2%)
+            510/32768 (2%) including unused fragments
+
+            0.5 Average locations per line
+            16.5 Average locations per statement
+
+RAM used:   150/2048 (7%) at main() level
+            150/2048 (7%) worst case
+
+Stack used: 40 worst case (2 in main + 38 for interrupts)
+Stack size: 128
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   70    31 100  main.c
+   20     0   0  main.h
+  852     0   0  C:\Program Files\PICC\Devices\30F4011.h
+----- -----
+  942    31 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     20   2    0             @delay_ms1
+0    146  14    0    600  3.8  main
+0     48   5    0     86  1.3  isrTimer1
+0     40   4    0     48  1.1  Timer2
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               3
+    Statements              31
+    Comments                137
+    Volume (V)              889
+    Difficulty (D)          6.2
+    Effort to implement (E) 5542
+    Time to implement (T)   5 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    60
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-000FE   252  0  
+00100-07FFE   254  32258  
+
+
+

@@ -1,0 +1,47 @@
+[PROJECT]
+Target=build\default\production\_ext\1432261028\main.hex
+Processor_Text=DSPIC30F4011
+CCSVersion=5.070
+Compiler=PCD
+[Target Data]
+FileList=main.c
+[build\default\production\_ext\1432261028\main.c]
+Type=4
+[mru-list]
+1=build\default\production\_ext\1432261028\main.c
+
+[ProjectLog]
+Days=1
+D1=24-07-2018
+D1_L=10
+D1_L1=[8632]Project Opened.
+D1_L2=[8751]Project Closed.
+D1_L3=[8759]Project Opened.
+D1_L4=[9414]Started Editing.
+D1_L5=[10182]Stopped Editing.
+D1_L6=[10299]Started Editing.
+D1_L7=[10616]Stopped Editing.
+D1_L8=[10947]Started Editing.
+D1_L9=[11359]Stopped Editing.
+TotalEdit=15
+TotalDebug=0
+D1_E=15
+D1_D=0
+D1_L10=[11359]Project Closed.
+
+[Opened Files]
+1=main.c
+t1=1
+Count=3
+2=C:\Program Files\PICC\Devices\30F4011.h
+t2=1
+3=main.h
+t3=1
+[main.c]
+Type=4
+
+[defines]
+buildcount=15
+[Units]
+Count=1
+1=main (main)

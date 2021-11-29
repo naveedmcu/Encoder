@@ -1,0 +1,13 @@
+#include <main.h>
+
+
+void main()
+{
+setup_oscillator(OSC_INTERNAL);
+
+   while(TRUE)
+   {
+      //TODO: User Code
+   }
+
+}

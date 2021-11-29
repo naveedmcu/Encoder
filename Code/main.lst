@@ -1,0 +1,83 @@
+CCS PCD C Compiler, Version 5.070, 60849               27-Jul-18 03:51
+
+               Filename:   D:\2018-Projects\motor-Encoder\Code\main.lst
+
+               ROM used:   280 bytes (1%)
+                           Largest free fragment is 32488
+               RAM used:   129 (6%) at main() level
+                           129 (6%) worst case
+               Stack used: 0 locations
+               Stack size: 128
+
+*
+0000:  GOTO    100
+.................... #include <main.h> 
+.................... #include <30F4011.h> 
+.................... //////////// Standard Header file for the DSPIC30F4011 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device DSPIC30F4011 
+....................  
+.................... #list 
+....................  
+.................... #device ICSP=1 
+.................... #use delay(crystal=20000000) 
+....................  
+.................... #FUSES NOWDT                 	//No Watch Dog Timer 
+.................... #FUSES CKSFSM                	//Clock Switching is enabled, fail Safe clock monitor is enabled 
+.................... #FUSES NOBROWNOUT            	//No brownout reset 
+....................  
+....................  
+.................... #use spi(SLAVE, CLK=PIN_E2, DI=PIN_E0, DO=PIN_E1, MODE=0, BITS=8, ENABLE=PIN_E3, stream=MT1) 
+....................  
+....................  
+....................  
+....................  
+....................  
+.................... void main() 
+*
+0100:  MOV     #F80,W15
+0102:  MOV     #FFF,W0
+0104:  MOV     W0,20
+0106:  NOP     
+0108:  BSET.B  81.7
+010A:  BSET.B  2D8.0
+010C:  BCLR.B  2D8.1
+010E:  BSET.B  2D8.2
+0110:  BSET.B  2D8.3
+0112:  SETM    2A8
+.................... { 
+....................  
+....................  
+....................  
+.................... 	while(TRUE) 
+.................... 	{ 
+0114:  BRA     114
+.................... 		//TODO: User Code 
+.................... 	} 
+....................  
+.................... } 
+0116:  PWRSAV  #0
+
+Configuration Fuses:
+   Word  1L: 0302   HS PR CKSFSM
+          H: 0000  
+   Word  2L: 003F   WPSB16 WPSA512 NOWDT
+          H: 0000  
+   Word  3L: 8733   PUT64 BORRES NOBROWNOUT LPOL_HIGH HPOL_HIGH NOPWMPIN MCLR
+          H: 0000  
+   Word  4L: 310F  
+          H: 0000  
+   Word  5L: 330F  
+          H: 0000  
+   Word  6L: 0007   NOWRT NOPROTECT
+          H: 0000  
+   Word  7L: C003   ICSP1 NODEBUG
+          H: 0000  

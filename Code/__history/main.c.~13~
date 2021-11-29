@@ -1,0 +1,19 @@
+#include <main.h>
+
+#byte Data getenv(SFR:TRISB)
+
+void main()
+{
+setup_oscillator(OSC_INTERNAL);
+
+   while(TRUE)
+   {
+   output_toggle(PIN_E0);
+   output_toggle(PIN_E1);
+   output_toggle(PIN_E2);
+   output_toggle(PIN_E3);
+   delay_ms(200);
+      //TODO: User Code
+   }
+
+}

@@ -1,0 +1,6 @@
+ÀÄEncoder_Project_MPLABX
+   ÃÄmain  0/146  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÀÄ@delay_ms1  0/20  Ram=0
+   ÃÄisrTimer1  0/48  Ram=0
+   ÀÄTimer2  0/40  Ram=0
